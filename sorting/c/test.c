@@ -4,9 +4,9 @@
 int main(void){
 
   int i;
-  int A[] = {4,3,8};
-  int n = 3;
-  
+  int A[] = {0,4,3,0};
+  int n = 4;
+
   printf("test bubblesort:\n");
   bubblesort(n, A);
 
