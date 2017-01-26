@@ -7,9 +7,12 @@ int main(void){
   int A[] = {0,4,3,0};
   int n = 4;
 
-  printf("test bubblesort:\n");
-  bubblesort(n, A);
-
+  //printf("test bubblesort:\n");
+  bubbleSort(A, n);
+  
+  printf("test heapSort:\n");
+  heapSort(A, n);
+  
   for(i=0;i<n;i++) printf("%d ", A[i]);
   printf("\n");
 }

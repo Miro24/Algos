@@ -15,10 +15,43 @@ def bubblesort(list):
 
 
 
+def maxHeapify(list, size, i):
+
+    while True:
+        l = 2*i
+        r = 2*i + 1
+        largest = i
+        if (l<=size) and (list[l-1] > list[i-1]):
+            largest = l
+
+        if (r<= size) and (list[r-1] > list[largest-1]):
+            largest = r
+        if largest != i:
+            list[i-1], list[largest-1] = list[largest-1], list[i-1]
+            i = largest
+        else:
+            break
+
+def buildMaxHeap(list):
+    
+    for i in range(len(list)//2,0,-1):
+        maxHeapify(list, len(list), i)
+
+def heapSort(list):
+    buildMaxHeap(list)
+    for i in range(len(list),1,-1):
+        list[0], list[i-1] = list[i-1], list[0]
+        maxHeapify(list, i-1, 1)
+    
+
+        
+        
+
 list = [[2,7,1,9], [0,4,3,0]]
 print("List to sort: ", list)
 for l in list:
-    bubblesort(l)
+    #bubblesort(l)
+    heapSort(l)
     print("Sorted list", l)
     print("\n")
 
