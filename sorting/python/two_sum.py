@@ -52,6 +52,38 @@ class Solution(object):
             list[0], list[i-1] = list[i-1], list[0]
             self.maxHeapify(list, i-1, 1)
 
+
+    def mergeSort(self, list):
+        """
+        :type list: Lis[[int,int]]
+        """
+        listOfList = []
+        for l in list:
+            listOfList.append([l])
+
+        i = len(listOfList)
+        while i > 1:
+            for j in range(i//2):
+                # merge
+                tmp = listOfList.pop(j)
+                p = 0 
+                while True:            
+                    if len(tmp) == 0:
+                        break;
+                    elif p == (len(listOfList[j])):
+                        listOfList[j].extend(tmp)
+                        break;
+                    else:
+                        if(tmp[0][0]<listOfList[j][p][0]):
+                            listOfList[j].insert(p, tmp.pop(0))
+                            p = p+1
+                        else:
+                            p = p +1
+            i = len(listOfList)
+
+        for i in range(len(list)):
+            list[i] = listOfList[0][i]
+
         
     def twoSum(self, nums, target):
         """
@@ -65,7 +97,8 @@ class Solution(object):
 
         # Sort the list
         #self.bubblesort(list)
-        self.heapSort(list)
+        #self.heapSort(list)
+        self.mergeSort(list)
         
         i,j=0,(len(list)-1)
         while True:
@@ -77,7 +110,10 @@ class Solution(object):
             else:
                 j = j-1
 
-        return [list[i][1],list[j][1]]
+        if list[i][1]< list[j][1]:
+            return [list[i][1],list[j][1]]
+        else:
+            return [list[j][1],list[i][1]]
 
 
 list = [[0,4,3,0], 0]
